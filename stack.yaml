@@ -1,0 +1,18 @@
+resolver: nightly-2025-11-30
+
+
+packages:
+- .
+- ../../../Useful
+
+extra-deps: 
+- regex-applicative-0.3.4
+- filtrable-0.1.6.0
+- cryptonite-0.30
+
+
+system-ghc: true
+install-ghc: false
+allow-newer: true
+
+
