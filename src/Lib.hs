@@ -4,7 +4,7 @@ module Lib
 
 import Utils (timeIt)
 import Day1
---import Day2
+import Day2
 --import Day3
 --import Day3
 --import Day4
@@ -19,8 +19,8 @@ import Day1
 
 libMain :: IO ()
 libMain = do 
-  day1
-  --day2
+  --day1
+  day2
   --day3
   --day3_RE
   --day4

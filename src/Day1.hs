@@ -8,25 +8,30 @@ parse ('L':s) = - (read s)
 parse ('R':s) = read s
 parse _ = error "I need L or R"
 
+-- The difference between divMod and quotRem
+-- (-23) `divMod` 10 = (-3, 7) -- chooses the div closer to -inf mod always positive
+-- (-23) `quotRem` 10 = (-2, -3) -- chooses the quot closer to 0
+                                 -- so it's symmetrical around zero and rem goes negative
 
--- There must be a cleaner wa of doing this...
+
+-- There must be a cleaner way of doing this...
+-- quot works better than div here - fewer adjustments
 counter :: Int -> Int -> Int
 counter pos spin
-  | pos==0 = abs (spin `quot` 100) 
-  | (pos+spin) == 0 = 1
-  | (pos+spin)<0 = 1 + abs ((pos+spin) `quot` 100)
-  | otherwise = abs $ (pos+spin) `quot` 100
+  | pos == 0 = abs (spin `quot` 100) -- if we start at 0 there's no extra zero
+  | (pos+spin) == 0 = 1 -- if we go back to 0, just a zero
+  | (pos+spin) < 0 = 1 + abs ((pos+spin) `quot` 100) -- if we go down there's an extra zero
+  | otherwise = abs $ (pos+spin) `div` 100 -- quot or div on this one
 
 
 day1 :: IO ()
 day1 = do
   ss <- getLines 1
-  --let ss = test
   let spins = parse <$> ss
-      code1 =  scanl (\pos spin -> (pos + spin) `mod` 100) 50 spins
+      code1 =  length $ filter (==0) $ scanl (\pos spin -> (pos + spin) `mod` 100) 50 spins
       code2 =  foldl (\(count, pos) spin -> (count + counter pos spin, (pos+spin) `mod` 100)) (0,50) spins
 
-  putStrLn $ "Day1: part1: " ++ show (length $ filter (==0) code1)
+  putStrLn $ "Day1: part1: " ++ show code1
   putStrLn $ "Day1: part2: " ++ show code2
 
   return ()
