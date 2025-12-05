@@ -8,14 +8,12 @@ parse ('L':s) = - (read s)
 parse ('R':s) = read s
 parse _ = error "I need L or R"
 
+
 -- The difference between divMod and quotRem
 -- (-23) `divMod` 10 = (-3, 7) -- chooses the div closer to -inf mod always positive
 -- (-23) `quotRem` 10 = (-2, -3) -- chooses the quot closer to 0
                                  -- so it's symmetrical around zero and rem goes negative
 
-
--- There must be a cleaner way of doing this...
--- quot works better than div here - fewer adjustments
 counter :: Int -> Int -> Int
 counter pos spin
   | pos == 0 = abs (spin `quot` 100) -- if we start at 0 there's no extra zero
@@ -32,6 +30,6 @@ day1 = do
       code2 =  foldl (\(count, pos) spin -> (count + counter pos spin, (pos+spin) `mod` 100)) (0,50) spins
 
   putStrLn $ "Day1: part1: " ++ show code1
-  putStrLn $ "Day1: part2: " ++ show code2
+  putStrLn $ "Day1: part2: " ++ show (fst code2)
 
   return ()

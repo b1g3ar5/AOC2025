@@ -1,15 +1,14 @@
-resolver: nightly-2025-11-30
-
+resolver: lts-23.27 #nightly-2025-11-30
 
 packages:
 - .
 - ../../../Useful
 
-extra-deps: 
-- regex-applicative-0.3.4
-- filtrable-0.1.6.0
-- cryptonite-0.30
-
+extra-deps: []
+#- regex-applicative-0.3.4
+#- filtrable-0.1.6.0
+#- cryptonite-0.30
+#- tls-2.1.8
 
 system-ghc: true
 install-ghc: false
