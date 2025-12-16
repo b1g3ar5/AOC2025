@@ -1,6 +1,7 @@
 module Main (main) where
 
 import Lib
+import Utils
 
 main :: IO ()
-main = libMain
+main = timeIt libMain

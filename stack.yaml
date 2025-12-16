@@ -2,9 +2,10 @@ resolver: lts-23.27 #nightly-2025-11-30
 
 packages:
 - .
-- ../../../Useful
+#- ../../../Useful
 
-extra-deps: []
+extra-deps:
+- linearEqSolver-2.4
 #- regex-applicative-0.3.4
 #- filtrable-0.1.6.0
 #- cryptonite-0.30

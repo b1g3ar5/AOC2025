@@ -9,10 +9,10 @@ parse ('R':s) = read s
 parse _ = error "I need L or R"
 
 
--- The difference between divMod and quotRem
--- (-23) `divMod` 10 = (-3, 7) -- chooses the div closer to -inf mod always positive
+-- The difference between divMod and quotRem on negative numbers (no difference for positive)
+-- (-23) `divMod` 10 = (-3, 7) -- chooses the div closer to -inf, mod always positive
 -- (-23) `quotRem` 10 = (-2, -3) -- chooses the quot closer to 0
-                                 -- so it's symmetrical around zero and rem goes negative
+                                 -- so it's symmetrical around zero, rem is negative
 
 counter :: Int -> Int -> Int
 counter pos spin
@@ -26,7 +26,7 @@ day1 :: IO ()
 day1 = do
   ss <- getLines 1
   let spins = parse <$> ss
-      code1 =  length $ filter (==0) $ scanl (\pos spin -> (pos + spin) `mod` 100) 50 spins
+      code1 =  length $ filter (==0) $ scanl (\p s -> (p+s) `mod` 100) 50 spins
       code2 =  foldl (\(count, pos) spin -> (count + counter pos spin, (pos+spin) `mod` 100)) (0,50) spins
 
   putStrLn $ "Day1: part1: " ++ show code1

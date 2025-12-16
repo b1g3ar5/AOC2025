@@ -3,7 +3,14 @@
 # For more information, please see the documentation at:
 #   https://docs.haskellstack.org/en/stable/topics/lock_files
 
-packages: []
+packages:
+- completed:
+    hackage: linearEqSolver-2.4@sha256:3b0307465ff88ff684c8db41a640ee6b4ec6b0ec1f249751c97aaa6eac28cc9d,1281
+    pantry-tree:
+      sha256: 3a2c09eb115a49a6e5c4c0d3839c85fe9d7688bd0e85c0e0a2868469f148d149
+      size: 421
+  original:
+    hackage: linearEqSolver-2.4
 snapshots:
 - completed:
     sha256: 069c8189232279d04bd107557d3a62132c04ae5ce3c710649e6b40f67f10b9d5

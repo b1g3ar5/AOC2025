@@ -25,21 +25,27 @@ dependencies:
 - array
 - base >= 4.7 && < 5
 - bimap
-- comonad
+#- comonad
 - containers
-- distributive
+#- distributive
 - hashable
-- MemoTrie
+#- MemoTrie
 - parsers
-- pqueue
-- recursion-schemes
-- regex-applicative
-- scientific
+#- pqueue
+#- recursion-schemes
+#- regex-applicative
+#- scientific
 - split
 - timeit
-- trie-simple
+#- trie-simple
 - unordered-containers
-- vector
+#- vector
+- extra
+- hmatrix
+- MemoTrie
+#- linearEqSolver
+- sbv
+- deepseq
 
 ghc-options:
 - -Wall

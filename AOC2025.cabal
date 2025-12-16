@@ -26,13 +26,19 @@ source-repository head
 library
   exposed-modules:
       Day1
+      Day10
+      Day11
+      Day12
       Day2
       Day3
       Day4
       Day5
+      Day6
+      Day7
+      Day8
+      Day9
       Lib
       Queue
-      TotalMap
       Utils
   other-modules:
       Paths_AOC2025
@@ -48,20 +54,16 @@ library
     , array
     , base >=4.7 && <5
     , bimap
-    , comonad
     , containers
-    , distributive
+    , deepseq
+    , extra
     , hashable
+    , hmatrix
     , parsers
-    , pqueue
-    , recursion-schemes
-    , regex-applicative
-    , scientific
+    , sbv
     , split
     , timeit
-    , trie-simple
     , unordered-containers
-    , vector
   default-language: Haskell2010
 
 executable AOC2025-exe
@@ -81,20 +83,16 @@ executable AOC2025-exe
     , array
     , base >=4.7 && <5
     , bimap
-    , comonad
     , containers
-    , distributive
+    , deepseq
+    , extra
     , hashable
+    , hmatrix
     , parsers
-    , pqueue
-    , recursion-schemes
-    , regex-applicative
-    , scientific
+    , sbv
     , split
     , timeit
-    , trie-simple
     , unordered-containers
-    , vector
   default-language: Haskell2010
 
 test-suite AOC2025-test
@@ -115,18 +113,14 @@ test-suite AOC2025-test
     , array
     , base >=4.7 && <5
     , bimap
-    , comonad
     , containers
-    , distributive
+    , deepseq
+    , extra
     , hashable
+    , hmatrix
     , parsers
-    , pqueue
-    , recursion-schemes
-    , regex-applicative
-    , scientific
+    , sbv
     , split
     , timeit
-    , trie-simple
     , unordered-containers
-    , vector
   default-language: Haskell2010

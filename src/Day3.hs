@@ -1,15 +1,11 @@
 module Day3(day3) where
 
-import Utils
-
-
-parse :: String -> [Int]
-parse s = read . (:[]) <$> s
+import Utils ( getLines )
 
 
 large :: Int -> [Int] -> Int
 large size voltages
-  | size == 1 = maximum voltages -- we just need one choose the biggest
+  | size == 1 = maximum voltages -- we just need one so choose the biggest
   | len == size = read $ concatMap show voltages -- we need all the remaining voltages
   | otherwise = maxv * (10 ^ (size-1)) + large (size-1) (others voltages)
   where
@@ -26,7 +22,8 @@ large size voltages
 day3 :: IO ()
 day3 = do
   ls <- getLines 3
-  let nss = parse <$> ls
+  let nss = (read . (:[]) <$> ) <$> ls
+
   putStrLn $ "Day3: part1: " ++ show (sum $ large 2 <$> nss)
   putStrLn $ "Day3: part2: " ++ show (sum $ large 12 <$> nss)
 

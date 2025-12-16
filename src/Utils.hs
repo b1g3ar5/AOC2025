@@ -5,6 +5,7 @@ module Utils (
   -- Parsing in the file
   getLines
   , getF
+  , getRaw
   , getWords
   , getTest -- gets .ex file
   , getNumbers
@@ -12,6 +13,7 @@ module Utils (
   , numbers2
   , numbers3
   , numbersSigned
+  , paragraphs
 
   -- text manipulation
   , wordsWhen
@@ -47,6 +49,7 @@ module Utils (
   , neighbours8
   , nextTo8
   , euclidian
+  , euclidian3
   , manhattan
   , circle
   , manhattan3
@@ -70,6 +73,7 @@ module Utils (
   , sort
   , group
   , groupBy
+  , groupOn
   , sortBy 
   , minimumBy
   , maximumBy
@@ -155,19 +159,20 @@ module Utils (
 import Data.Char ( ord, isDigit, chr, isAscii )
 import Data.Tuple (swap)
 import Data.List.Split (chunksOf, wordsBy)
+import Data.List.Extra (groupOn)
 import Data.Maybe ( fromJust, fromMaybe, isJust, isNothing, catMaybes, mapMaybe )
-import Data.List -- ( elemIndex, findIndex, group, groupBy, sort, sortBy, sortOn, nub, intercalate, transpose, minimumBy, maximumBy ) 
+import Data.List 
 import Data.Bifunctor ( Bifunctor(second, bimap, first) )
 import Data.Function ( on )
 import Data.Either ( lefts, rights, fromRight )
 import System.TimeIt ( timeIt )
 import Text.ParserCombinators.ReadP (ReadP, many1, readP_to_S, satisfy, string, many, sepBy, sepBy1, endBy, endBy1, char, manyTill, look)
-import Text.Parser.LookAhead
+import Text.Parser.LookAhead ( LookAheadParsing(lookAhead) )
 import Data.Hashable ( Hashable )
 import Debug.Trace (trace)
 import qualified Data.Set as S
 import qualified Queue as Q
-import Data.Foldable ( Foldable(foldl'), traverse_ )
+import Data.Foldable ( traverse_ )
 import Data.Ord ( comparing, Down(Down) )
 
 
@@ -203,6 +208,8 @@ getWords = getF words
 getLines :: Int -> IO [String]
 getLines = getF lines
 
+paragraphs :: String -> [[String]]
+paragraphs = splitOn "" . lines
 
 getNumbers :: Int -> IO [Int]
 getNumbers = getF numbers
@@ -366,6 +373,9 @@ manhattan3 (x1, y1, z1) (x2, y2, z2) = abs (x1 - x2) + abs (y1 - y2) + abs (z1 -
 
 euclidian :: Coord -> Coord -> Double
 euclidian (x1, y1) (x2, y2) = sqrt $ fromIntegral ((x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2))
+
+euclidian3 :: Coord3 -> Coord3 -> Double
+euclidian3 (x1, y1, z1) (x2, y2, z2) = sqrt $ fromIntegral ((x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2) + (z1 - z2)*(z1 - z2))
 
 
 clockTurn :: Coord -> Coord
